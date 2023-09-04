@@ -2,13 +2,13 @@
 $commit1 = (git log --pretty=format:%H -n 1 HEAD~0)
 $commit2 = (git log --pretty=format:%H -n 1 HEAD~1)
 
-$downloadDirectory = "/home/karthik/Downloadfilelist"
+$sourceDirectory = "/home/karthik/Demofile"  # Current directory
+$targetDirectory = "/home/karthik/Downloadfilelist"
 
-#added file
 $addedFiles = git diff --name-only $commit1 $commit2
 
 foreach ($file in $addedFiles) {
-    $sourcePath = "git show $($commit2):$file"
-    $targetPath = Join-Path -Path $downloadDirectory -ChildPath $file
-    Invoke-Expression -Command $sourcePath | Out-File -FilePath $targetPath
+    $sourcePath = Join-Path -Path $sourceDirectory -ChildPath $file
+    $targetPath = Join-Path -Path $targetDirectory -ChildPath $file
+    Copy-Item -Path $sourcePath -Destination $targetPath
 }
