@@ -4,11 +4,7 @@ $commit2 = (git log --pretty=format:%H -n 1 HEAD~1)
 
 $downloadDirectory = "/home/karthik/Downloadfilelist"
 
-# Create the directory if it doesn't exist
-if (-not (Test-Path -Path $downloadDirectory)) {
-    New-Item -ItemType Directory -Force -Path $downloadDirectory
-}
-
+#added file
 $addedFiles = git diff --name-only $commit1 $commit2
 
 foreach ($file in $addedFiles) {
