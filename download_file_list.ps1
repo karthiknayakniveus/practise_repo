@@ -9,5 +9,5 @@ $addedFiles = git diff --name-only $commit1 $commit2
 foreach ($file in $addedFiles) {
     $sourcePath = "git show $($commit2):$file"
     $targetPath = Join-Path -Path $downloadDirectory -ChildPath $file
-    Copy-Item -Path $sourcePath -Destination $targetPath
+    Invoke-Expression -Command $sourcePath | Out-File -FilePath $targetPath
 }
