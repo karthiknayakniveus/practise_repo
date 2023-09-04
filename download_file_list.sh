@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Specify the commit range you want to compare
-commit1="a22c1bf21c0f1ea5f67626392d3d9521775d82f3"
-commit2="c6c6eb9a5c38f30504380b5a38fd2d2ea80ff94a"
+commit1=$(git log --pretty=format:%H -n 1 HEAD~0)
+commit2=$(git log --pretty=format:%H -n 1 HEAD~1)
 
 # Create the directory to store downloaded files
 
